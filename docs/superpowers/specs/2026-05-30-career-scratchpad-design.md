@@ -31,6 +31,52 @@ Out of scope for the first version:
 - Cloud accounts or saved remote sync.
 - Full portfolio polish.
 - Automated Google Docs auth flows.
+- Saving or reproducing live assessment answers. Assessment-inspired labs should preserve prompts, reasoning patterns, and tooling needs, not completed response text.
+
+## Assessment-Inspired Lab Backlog
+
+The current coding assessment suggests several lab and sub-lab types that Career Scratchpad should support after the first decoder lab. These are not separate apps; they are future entries in the same active lab shell.
+
+### Code Analysis Labs
+
+These labs support interview questions where the task is to compare snippets or judge implementation quality:
+
+- **Palindrome Best Practices**: compare three pseudocode implementations, identify the most maintainable/general solution, and write a short explanation.
+- **Prime Complexity Comparison**: compare valid and invalid prime-checking approaches, surface time and space complexity, and explain why a square-root bound is better than full-range checks or extra factor storage.
+- **Complexity Notes Panel**: reusable panel for Big-O, correctness, edge cases, and maintainability comments.
+
+### Algorithm Ordering Labs
+
+These labs support drag/order style problems where the answer is a sequence of steps:
+
+- **Digit Frequency With Arithmetic**: arrange the steps for extracting digits from an integer with `mod 10`, updating a frequency map, and reducing the number with integer division.
+- **Step Sequencer Component**: reusable UI for moving pseudocode steps up/down and previewing the assembled algorithm.
+
+### Response Evaluation Labs
+
+These labs support side-by-side AI response comparisons:
+
+- **Safety Refusal Comparison**: compare a safe refusal against a response that gives harmful operational instructions.
+- **Helpfulness Rubric Panel**: reusable rubric for correctness, safety, instruction-following, clarity, and whether a response should refuse.
+- **Explanation Builder**: space to draft concise 2-3 sentence reasoning without storing live assessment answers.
+
+### Coding Challenge Labs
+
+These labs support full coding tasks:
+
+- **Secret Message Decoder**: first implementation target; parse published Google Doc grid data and render the uppercase message.
+- **Parser Harness**: reusable input/output runner for document, table, JSON, CSV, or copied-web-text parsing problems.
+- **Orientation/Visualization Controls**: reusable toggles for grid problems, including axis swap and flips.
+
+### Career Profile Prep Labs
+
+These are not coding exercises, but the app can later help maintain reusable source material for applications:
+
+- **Experience Inventory**: structured notes for professional background, roles, projects, and technologies.
+- **Skills Matrix**: reusable list of languages, frameworks, tooling, testing, cloud, and data skills.
+- **Application Notes**: place to draft reusable, user-authored summaries for profile questions.
+
+These profile labs must remain user-controlled writing aids. They should not auto-submit, impersonate, or overwrite external application forms.
 
 ## App Model
 
@@ -47,6 +93,9 @@ Initial categories:
 - `API Design`
 - `Architecture`
 - `Data Parsing`
+- `Code Analysis`
+- `Response Evaluation`
+- `Career Prep`
 
 The first release only needs the `Secret Message Decoder` lab, but the registry should make adding the next lab straightforward.
 
