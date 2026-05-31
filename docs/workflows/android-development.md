@@ -88,6 +88,19 @@ For the first lab, follow this order:
 8. Run log-captured unit tests only when explicitly asked.
 9. Let Android Studio own interactive sync/run/debug unless Codex is explicitly asked to run a narrow command.
 
+## UI Iteration Lessons
+
+When Monroe is validating Android UI on a device, treat screenshots and Android Studio as the visual source of truth. If a change is present but the intended layout does not appear, first check responsive breakpoints, device `dp` width, orientation, and preview dimensions before assuming the code path is wrong.
+
+Keep the UX dedicated to the task:
+
+- Prefer one source-of-truth input surface over separate preview/copy panels that represent the same data.
+- If generated data feeds an existing workflow, write it back into the existing input field and run the same decode/render path.
+- Remove exploratory controls after the correct behavior is known. For Secret Message, default orientation is the lab behavior; flip/swap controls became noise.
+- Use square-pixel/canvas previews for pixel-grid answers. Text/glyph renderings are debug-only unless the user explicitly wants copyable text.
+- For foldables and landscape devices, design as two open pages when width allows: input/work controls on the left, output/evidence on the right.
+- Make visual previews auto-fit the available pane when that does not change the solver logic.
+
 ## Secret Message Decoder Target
 
 The first lab should implement the spec, not a generic cipher demo:

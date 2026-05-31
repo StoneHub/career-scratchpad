@@ -336,7 +336,7 @@ private fun DecodeResultView(result: SecretMessageDecodeResult) {
         text = "Square pixel preview",
         style = MaterialTheme.typography.titleSmall
     )
-    PixelGridView(grid = result.renderedGrid, cellSize = 14.dp)
+    PixelGridView(grid = result.renderedGrid, maxCellSize = 14.dp)
 
     Text(
         text = "Single-method Kotlin version",
@@ -352,23 +352,28 @@ private fun DecodeResultView(result: SecretMessageDecodeResult) {
 @Composable
 private fun PixelGridView(
     grid: SecretMessageRenderedGrid,
-    cellSize: Dp = 12.dp
+    maxCellSize: Dp = 12.dp,
+    minCellSize: Dp = 3.dp
 ) {
     if (grid.width == 0 || grid.height == 0) return
 
     val filledColor = MaterialTheme.colorScheme.onSurface
     val blankColor = Color.Transparent
 
-    Box(
+    BoxWithConstraints(
         modifier = Modifier
             .fillMaxWidth()
-            .horizontalScroll(rememberScrollState())
             .background(MaterialTheme.colorScheme.surfaceVariant)
             .padding(16.dp)
     ) {
+        val availableWidth = (maxWidth - 32.dp).coerceAtLeast(minCellSize)
+        val fittedCellSize = (availableWidth.value / grid.width)
+            .coerceIn(minCellSize.value, maxCellSize.value)
+            .dp
+
         PixelGridCanvas(
             grid = grid,
-            cellSize = cellSize,
+            cellSize = fittedCellSize,
             filledColor = filledColor,
             blankColor = blankColor
         )
